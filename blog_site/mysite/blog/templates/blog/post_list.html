@@ -19,6 +19,9 @@
         <h1><a href="/">Django Girls Blog</a></h1>
     </div>
 
+    {% extend 'blog/base.html' %}
+
+    {% block content %}
     {% for post in posts %}
     <div class="content container">
         <div class="row">
@@ -28,7 +31,7 @@
                     <div class="date">
                         <p>Опубликовано: {{ post.published_date }}</p>
                     </div>
-                    <h1><a href="">{{ post.title }}</a></h1>
+                    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
                     <p>{{ post.text|linebreaksbr }}</p>
                 </div>
                 {% endfor %}
@@ -36,7 +39,7 @@
         </div>
     </div>
     {% endfor %}
-
+    {% endblock %}
 </body>
 
 </html>
