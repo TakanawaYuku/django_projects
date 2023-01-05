@@ -26,6 +26,6 @@ def post_new(request):
             post.save()
             return redirect('post_detail', pk=post.pk)
 
-        else:
-            form = PostForm()
-        return render(request, 'blog/post_detail.html', {'form': form})
+    else:
+        form = PostForm()
+    return render(request, 'blog/post_detail.html', {'form': form})
