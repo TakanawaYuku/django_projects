@@ -2,12 +2,19 @@ from django.db import models
 
 
 # Create your models here.
-class MyModelName(models.Model):
+class Genre(models.Model):
+    """
+    Модель, представляющая книжный жанр (например, научная фантастика, документальная литература).
+    """
+    name = models.CharField(
+        max_length=200,
+        help_text=
+        'Введите жанр книги (например, научная фантастика, французская поэзия и т.д.).'
+    )
 
-    my_field_name = models.CharField(max_length=20,
-                                     help_text='Введите полевую документацию')
+    def __str__(self):
+        """
+        Строка для представления объекта модели (на сайте администратора и т. д.)
+        """
 
-    class Meta:
-        ordering = ['-my_field_name']
-        # ordering = ['title', '-pubdate']
-        # verbose_name = 'Better name'
+        return self.name
