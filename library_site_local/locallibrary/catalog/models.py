@@ -1,5 +1,6 @@
 from django.db import models
 from django.shortcuts import reverse
+import uuid  # Требуется для уникальных экземпляров книги
 
 
 # Create your models here.
@@ -56,3 +57,41 @@ class Book(models.Model):
         """
 
         return reverse('book-detail', args=[str(self.id)])
+
+
+class BookInstance(models.Model):
+    """
+        Модель, представляющая конкретный экземпляр книги (т.е. который можно взять в библиотеке).
+    """
+
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        help_text=
+        'Уникальный идентификатор этой конкретной книги во всей библиотеке')
+    book = models.ForeignKey('Book', on_delete=models.SET_NULL, null=True)
+    imprint = models.CharField(max_length=200)
+    due_back = models.DateField(null=True, blank=True)
+
+    LOAN_STATUS = (
+        ('m', 'На обслуживании'),  # 'Maintenance'
+        ('o', 'Взять на руки'),  # 'On loan'
+        ('a', 'Свободный'),  # 'Available'
+        ('r', 'Занято'),  # 'Reserved'
+    )
+
+    status = models.CharField(max_length=1,
+                              choices=LOAN_STATUS,
+                              blank=True,
+                              default='m',
+                              help_text='Забронировать наличие мест')
+
+    class Meta:
+        ordering = ['due_back']
+
+
+    def __str__(self):
+        """
+            Строка для представления объекта Model
+        """
+        return '%s (%s)' % (self.id, self.book.title)
