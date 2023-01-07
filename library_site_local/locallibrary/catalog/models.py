@@ -42,6 +42,10 @@ class Book(models.Model):
     genre = models.ManyToManyField(Genre,
                                    help_text='Выберите жанр для этой книги')
 
+    language = models.ForeignKey('Language',
+                                 on_delete=models.SET_NULL,
+                                 null=True)
+
     # Используется ManyToManyField, потому что жанр может содержать много книг.  Книги могут охватывать множество жанров.
     # Класс жанра уже определен, поэтому мы можем указать объект выше.
 
@@ -93,7 +97,7 @@ class BookInstance(models.Model):
         """
             Строка для представления объекта Model
         """
-        return '%s (%s)' % (self.id, self.book.title)
+        return '{0} ({1})'.format(self.id, self.book.title)
 
 
 class Author(models.Model):
@@ -118,7 +122,7 @@ class Author(models.Model):
             Строка для представления объекта Model
         """
 
-        return '%s, %s' % (self.last_name, self.first_name)
+        return '{0}, {1}'.format(self.last_name, self.first_name)
 
 
 class Language(models.Model):
