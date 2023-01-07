@@ -17,7 +17,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class BooKAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'genre')
+    list_display = ('title', 'author', 'display_genre')
 
 
 @admin.register(BookInstance)
