@@ -9,11 +9,9 @@ from .models import Author, Book, BookInstance, Language, Genre
 # admin.site.register(Language)
 
 
+@admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     pass
-
-
-admin.site.register(Author, AuthorAdmin)
 
 
 @admin.register(Book)
