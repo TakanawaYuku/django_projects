@@ -84,7 +84,7 @@ class BookInstance(models.Model):
                               choices=LOAN_STATUS,
                               blank=True,
                               default='m',
-                              help_text='Забронировать наличие мест')
+                              help_text='Забронировать книгу')
 
     class Meta:
         ordering = ['due_back']
@@ -119,3 +119,22 @@ class Author(models.Model):
         """
 
         return '%s, %s' % (self.last_name, self.first_name)
+
+
+class Language(models.Model):
+    """
+        Модель, представляющая язык (например, английский, французский, японский и т. д.)
+    """
+
+    name = models.CharField(
+        max_length=200,
+        help_text=
+        'Введите язык книги (например, английский, французский, японский и т. д.)'
+    )
+
+    def __str__(self):
+        """
+            Строка для представления объекта модели (на сайте администратора и т. д.)
+        """
+
+        return self.name
