@@ -22,7 +22,8 @@ class BooKAdmin(admin.ModelAdmin):
 
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'book', 'status', 'due_back')
+    list_filter = ('status', 'due_back')
 
 
 @admin.register(Language)
