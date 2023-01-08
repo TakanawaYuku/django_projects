@@ -19,6 +19,9 @@ def index(request):
     num_authors = Author.objects.count(
     )  # в данной строчке Метод 'all()'  применён по умолчанию.
 
+    # Количество жанров
+    num_genre = Genre.objects.all().count()
+
     # Отрисовка HTML-шаблона index.html с данными внутри
     # переменной контекста context
 
@@ -29,6 +32,7 @@ def index(request):
             'num_books': num_books,
             'num_instance': num_instance,
             'num_instance_available': num_instance_available,
-            'num_authors': num_authors
+            'num_authors': num_authors,
+            'num_genre': num_genre,
         },
     )
