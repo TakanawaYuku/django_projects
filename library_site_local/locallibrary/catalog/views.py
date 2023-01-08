@@ -14,7 +14,7 @@ def index(request):
 
     # Доступные книги (статус = 'a')
     num_instance_available = BookInstance.objects.filter(
-        status_exact='a').count
+        status__exact='a').count
 
     num_authors = Author.objects.count(
     )  # в данной строчке Метод 'all()'  применён по умолчанию.
