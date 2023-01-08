@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% block content %}
+<h1>Local Library</h1>
 
-<body>
+<p> Welcome to <em>LocalLibrary</em>, a very basic Django website developed as a tutorial example on the Mozilla
+    Developer Network.</p>
 
-</body>
 
-</html>
+<h2>Dynamic content</h2>
+
+<p>The library has the following record counts:</p>
+
+<ul>
+    <li><strong>Books:</strong> {{ num_books }}</li>
+    <li><strong>Copies:</strong> {{ num_instance }}</li>
+    <li><strong>Copies available:</strong> {{ num_instance_available }}</li>
+    <li><strong>Authors:</strong> {{ num_authors }}</li>
+</ul>
+
+
+{% endblock %}
