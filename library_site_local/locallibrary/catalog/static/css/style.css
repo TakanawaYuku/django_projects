@@ -10,6 +10,10 @@ li {
     list-style: none;
 }
 
+img {
+    width: 600px;
+}
+
 .sidebar-nav {
     margin-top: 20px;
     margin-left: 20px;
