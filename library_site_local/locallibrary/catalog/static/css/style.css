@@ -14,9 +14,24 @@ img {
     width: 600px;
 }
 
-.sidebar-nav {
+.sidebar_nav {
     margin-top: 20px;
     margin-left: 20px;
     padding: 0;
-    background-color: #01ff22;
+    background-color: #29756f;
+}
+
+.nav_item a {
+    text-decoration: none;
+    padding: 5px;
+    color: #ffffff;
+    font-size: 24px;
+}
+
+.nav_item a:hover {
+    color: #000000;
+}
+
+.nav_item:nth-child(1n + 1) {
+    margin-bottom: 10px;
 }
