@@ -24,7 +24,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/catalog/', permanent=True)),
 ]
 
-urlpatterns = + [
+urlpatterns += [
     path('catalog/', include('catalog.urls')),
 ]
 
