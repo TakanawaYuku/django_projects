@@ -61,3 +61,6 @@ class BookListView(generic.ListView):
 
 
         return context
+
+class BookDetailView(generic.DetailView):
+    model = Book
