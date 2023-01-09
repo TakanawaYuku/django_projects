@@ -45,3 +45,19 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
+
+    def get_queryset(self):
+        return Book.objects.filter(
+            title__icontains='war'
+        )[:5]  # Получить 5 книг, содержащих 'war' в заголовке
+
+    def get_context_data(self, **kwargs):
+
+        # В первую очередь получаем базовую реализацию контекста
+        context = super(BookListView, self).get_context_data(**kwargs)
+
+        # Добавляем новую переменную к контексту и инициализируем её некоторым значением
+        context['some_date'] = 'This is just some data'
+
+
+        return context
