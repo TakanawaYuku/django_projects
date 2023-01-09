@@ -81,3 +81,7 @@ class BookDetailView(generic.DetailView):
                       context={
                           'book': book_id,
                       })
+
+
+class AuthorListView(generic.ListView):
+    model = Author
