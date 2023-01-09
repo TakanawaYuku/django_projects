@@ -132,6 +132,9 @@ class Author(models.Model):
 
         return '{0}, {1}'.format(self.last_name, self.first_name)
 
+    class Meta:
+        ordering = ['last_name']
+
 
 class Language(models.Model):
     """

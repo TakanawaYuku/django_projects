@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Book, BookInstance, Author, Genre, Language
 from django.views import generic
+from django.http import Http404
 
 
 # Create your views here.
@@ -46,21 +47,37 @@ def index(request):
 class BookListView(generic.ListView):
     model = Book
 
-    def get_queryset(self):
-        return Book.objects.filter(
-            title__icontains='war'
-        )[:5]  # Получить 5 книг, содержащих 'war' в заголовке
+    paginate_by = 10
 
-    def get_context_data(self, **kwargs):
+    # def get_queryset(self):
+    #     return Book.objects.filter(
+    #         title__icontains=''
+    #     )  # Получить 5 книг, содержащих 'war' в заголовке
 
-        # В первую очередь получаем базовую реализацию контекста
-        context = super(BookListView, self).get_context_data(**kwargs)
+    # def get_context_data(self, **kwargs):
 
-        # Добавляем новую переменную к контексту и инициализируем её некоторым значением
-        context['some_date'] = 'This is just some data'
+    #     # В первую очередь получаем базовую реализацию контекста
+    #     context = super(BookListView, self).get_context_data(**kwargs)
 
+    #     # Добавляем новую переменную к контексту и инициализируем её некоторым значением
+    #     context['some_date'] = 'This is just some data'
 
-        return context
+    #     return context
+
 
 class BookDetailView(generic.DetailView):
     model = Book
+
+    def book_detail_view(request, pk):
+        try:
+            book_id = Book.objects.get(pk=pk)
+        except Book.DoesNotExist:
+            raise Http404("Book does not exist")
+
+        #book_id=get_object_or_404(Book, pk=pk)
+
+        return render(request,
+                      'catalog/book_detail.html',
+                      context={
+                          'book': book_id,
+                      })
