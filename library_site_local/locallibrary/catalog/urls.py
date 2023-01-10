@@ -13,4 +13,7 @@ urlpatterns = [
         views.AuthorListView.as_view(),
         name='authors',
     ),
+    url(r'authors/(?P<pk>\d+)$',
+        views.AuthorDetailView.as_view(),
+        name='author-detail'),
 ]
