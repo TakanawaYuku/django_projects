@@ -27,6 +27,10 @@ def index(request):
     # Количество книг, которые содержат в своих заголовках какое-либо слово (без учёта регистра)
     num_book_title = Book.objects.values('title').count()
 
+    # Количество посещений этого представления, подсчитанное в переменной сеанса.
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+
     # Отрисовка HTML-шаблона index.html с данными внутри
     # переменной контекста context
 
@@ -40,6 +44,7 @@ def index(request):
             'num_authors': num_authors,
             'num_genre': num_genre,
             'num_book_title': num_book_title,
+            'num_visits': num_visits,
         },
     )
 
@@ -68,19 +73,19 @@ class BookListView(generic.ListView):
 class BookDetailView(generic.DetailView):
     model = Book
 
-    def book_detail_view(request, pk):
-        try:
-            book_id = Book.objects.get(pk=pk)
-        except Book.DoesNotExist:
-            raise Http404("Book does not exist")
+    # def book_detail_view(request, pk):
+    #     try:
+    #         book_id = Book.objects.get(pk=pk)
+    #     except Book.DoesNotExist:
+    #         raise Http404("Book does not exist")
 
-        #book_id=get_object_or_404(Book, pk=pk)
+    #     #book_id=get_object_or_404(Book, pk=pk)
 
-        return render(request,
-                      'catalog/book_detail.html',
-                      context={
-                          'book': book_id,
-                      })
+    #     return render(request,
+    #                   'catalog/book_detail.html',
+    #                   context={
+    #                       'book': book_id,
+    #                   })
 
 
 class AuthorListView(generic.ListView):
