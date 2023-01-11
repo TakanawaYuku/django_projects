@@ -35,12 +35,9 @@ class Book(models.Model):
     # Author как строку, а не как объект, потому что он еще не объявлен в файле.
     summary = models.TextField(max_length=1000,
                                help_text='Введите краткое описание книги')
-    isbn = models.CharField(
-        'ISBN',
-        max_length=13,
-        help_text=
-        '13-символьный <a href="https://www.isbn-international.org/content/what-isbn">номер ISBN'
-    )
+    isbn = models.CharField('ISBN',
+                            max_length=13,
+                            help_text='13-символьный номер ISBN')
     genre = models.ManyToManyField(Genre,
                                    help_text='Выберите жанр для этой книги')
 

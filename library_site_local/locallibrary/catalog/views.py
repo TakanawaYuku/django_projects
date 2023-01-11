@@ -103,6 +103,22 @@ class AuthorDetailView(generic.DetailView):
 def my_view(request):
     pass
 
+
 # class MyView(LoginRequiredMixin, View):
 #     login_url = '/login/'
 #     redirect_field_name = 'redirect_to'
+
+
+class LoanedBooksUserListView(LoginRequiredMixin, generic.ListView):
+    """
+
+        Общий список книг на основе классов, предоставленных текущему пользователю.
+    """
+
+    model = BookInstance
+    template_name = 'catalog/bookinstance_list_borrowed_user.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(borrowed=self.request.user).filter(
+            status='o').order_by('due_back')
