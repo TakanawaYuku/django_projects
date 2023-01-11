@@ -109,7 +109,7 @@ def my_view(request):
 #     redirect_field_name = 'redirect_to'
 
 
-class LoanedBooksUserListView(LoginRequiredMixin, generic.ListView):
+class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
     """
 
         Общий список книг на основе классов, предоставленных текущему пользователю.
