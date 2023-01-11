@@ -120,5 +120,5 @@ class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        return BookInstance.objects.filter(borrowed=self.request.user).filter(
+        return BookInstance.objects.filter(borrower=self.request.user).filter(
             status='o').order_by('due_back')
