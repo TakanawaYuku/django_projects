@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import reverse
 import uuid  # Требуется для уникальных экземпляров книги
 from django.contrib.auth.models import User
+from datetime import date
 
 
 # Create your models here.
@@ -111,6 +112,13 @@ class BookInstance(models.Model):
             Строка для представления объекта Model
         """
         return '{0} ({1})'.format(self.id, self.book.title)
+
+    @property
+    def is_oberdue(self):
+        if self.due_back and date.today() > self.due_back:
+            return True
+
+        return False
 
 
 class Author(models.Model):
