@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from .models import Book, BookInstance, Author, Genre, Language
 from django.views import generic
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Book, BookInstance, Author, Genre, Language
 
 
 # Create your views here.
@@ -95,3 +97,12 @@ class AuthorListView(generic.ListView):
 
 class AuthorDetailView(generic.DetailView):
     model = Author
+
+
+@login_required
+def my_view(request):
+    pass
+
+# class MyView(LoginRequiredMixin, View):
+#     login_url = '/login/'
+#     redirect_field_name = 'redirect_to'
