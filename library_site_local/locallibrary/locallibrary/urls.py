@@ -31,4 +31,7 @@ urlpatterns += [
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 #Добавить URL-адреса аутентификации сайта Django (для входа, выхода, управления паролями)
-urlpatterns += [path('accounts/', include('django.contrib.auth.urls'))]
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')
+         ),  # Создан не втой директории и работает не так как должно
+]
