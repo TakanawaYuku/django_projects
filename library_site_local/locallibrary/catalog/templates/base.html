@@ -30,7 +30,7 @@
                 <li class="nav_item"><a href="{% url 'logout' %}?next{{ request.path }}">Logout</a></li>
 
                 {% else %}
-                <li class="nav_item"><a href="{url 'login'}?next{{ request.path }}">Login</a></li>
+                <li class="nav_item"><a href="{% url 'login' %}?next{{ request.path }}">Login</a></li>
                 {% endif %}
 
             </ul>
