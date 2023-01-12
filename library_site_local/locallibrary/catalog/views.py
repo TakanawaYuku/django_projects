@@ -5,7 +5,7 @@ from django.urls import reverse
 import datetime
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-
+from catalog.forms import RenewBookForm
 from .models import Book, BookInstance, Author, Genre, Language
 
 
@@ -144,7 +144,7 @@ class LoanedBooksAllListView(PermissionRequiredMixin, generic.ListView):
 @login_required
 @permission_required('catalog.can_mark_returned', raise_exception=True)
 def renew_book_librarian(request, pk):
-    """View function for renewing a specific BookInstance by librarian."""
+    """Функция просмотра для обновления определенного BookInstance библиотекарем."""
     book_instance = get_object_or_404(BookInstance, pk=pk)
 
     # Если это POST-запрос, то обработайте данные формы

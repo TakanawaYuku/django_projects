@@ -31,6 +31,6 @@ urlpatterns += [
 
 urlpatterns += [
     path('book/<uuid:pk>/renew/',
-         views.renew_book_librian,
+         views.renew_book_librarian,
          name='renew-book-librian')
 ]
