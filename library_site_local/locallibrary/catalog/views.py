@@ -135,4 +135,5 @@ class LoanedBooksAllListView(PermissionRequiredMixin, generic.ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        return BookInstance.objects.filter(status='o').order_by('due_back')
+        return BookInstance.objects.filter(
+            status__exact='o').order_by('due_back')
