@@ -32,14 +32,17 @@
                 {% else %}
                 <li class="nav_item"><a href="{% url 'login' %}?next{{ request.path }}">Login</a></li>
                 {% endif %}
-                <br>
-                <br>
-                <hr>
 
-                <li class="nav_item">Staff</li>
-                <li class="nav_item"><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
             </ul>
-
+            {% if user.is_staff %}
+            <hr>
+            <ul class="sidebar_nav">
+                <li>Staff</li>
+                {% if perms.catalog.can_mark_returned %}
+                <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
+                {% endif %}
+            </ul>
+            {% endif %}
 
 
             {% endblock %}
