@@ -26,3 +26,11 @@ urlpatterns += [
         views.LoanedBooksAllListView.as_view(),
         name='all-borrowed'),
 ]
+
+# Добавьте URLConf для библиотекаря, чтобы обновить книгу.
+
+urlpatterns += [
+    path('book/<uuid:pk>/renew/',
+         views.renew_book_librian,
+         name='renew-book-librian')
+]
